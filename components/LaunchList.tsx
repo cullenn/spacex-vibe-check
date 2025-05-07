@@ -2,6 +2,7 @@
 
 import { useQuery } from "@apollo/client";
 import { GET_LAUNCHES } from "@/graphql/spacex";
+import { Launch } from "@/generated/graphql/graphql";
 
 export default function Launches() {
   const { loading, error, data } = useQuery(GET_LAUNCHES);
@@ -14,7 +15,7 @@ export default function Launches() {
 
   return (
     <ul className="space-y-4">
-      {data.launches.map((launch: any, i: number) => (
+      {data.launches.map((launch: Launch, i: number) => (
         <li
           key={i}
           className="p-4 border rounded-lg shadow-md bg-white hover:bg-gray-50 transition-colors"
