@@ -8,8 +8,17 @@ export const GET_LAUNCHES = gql`
     }
   }
 `;
-export const GET_LAUNCHES_DETAILS = gql`
-  query GetLaunches {
+
+export const GET_LAUNCH_TIMES = gql`
+  query GetLaunchTimes {
+    launches {
+      launch_date_utc
+    }
+  }
+`;
+
+export const GET_LAUNCHES_WITH_ROCKETS = gql`
+  query GetLaunchesWithRockets {
     launches {
       launch_date_utc
       mission_name
