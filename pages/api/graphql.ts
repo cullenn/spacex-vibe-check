@@ -10,8 +10,6 @@ const schemaPath = path.join(process.cwd(), "graphql", "schema.gql");
 
 const typeDefs = gql(fs.readFileSync(schemaPath, "utf-8"));
 
-console.log("typeDefs", typeDefs);
-
 const resolvers = {
   Query: {
     hello: () => "yep that works",
