@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const GET_LAUNCHES = gql`
+export const GET_LAUNCHES_QUERY = gql`
   query GetLaunches {
     launches {
       launch_date_utc
@@ -9,7 +9,7 @@ export const GET_LAUNCHES = gql`
   }
 `;
 
-export const GET_LAUNCH_TIMES = gql`
+export const GET_LAUNCH_TIMES_QUERY = gql`
   query GetLaunchTimes {
     launches {
       launch_date_utc
@@ -17,7 +17,7 @@ export const GET_LAUNCH_TIMES = gql`
   }
 `;
 
-export const GET_LAUNCHES_WITH_ROCKETS = gql`
+export const GET_LAUNCHES_WITH_ROCKETS_QUERY = gql`
   query GetLaunchesWithRockets {
     launches {
       launch_date_utc
