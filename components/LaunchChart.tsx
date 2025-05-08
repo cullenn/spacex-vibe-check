@@ -22,7 +22,9 @@ export default function LaunchChart(): React.JSX.Element {
   const launches = (data?.launches ?? []) as Launch[];
   if (loading) return <p className="text-center text-gray-500">Loading...</p>;
   if (error)
-    return <p className="text-center text-red-500">Error: {error?.message}</p>;
+    return (
+      <p className="text-center text-red-500">Error loading launches chart</p>
+    );
 
   const chartDataMap = new Map<number, number>();
 

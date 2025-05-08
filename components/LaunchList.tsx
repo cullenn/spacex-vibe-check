@@ -7,9 +7,14 @@ export default function Launches(): React.JSX.Element {
 
   const launches = (data?.launches ?? []) as Launch[];
 
-  if (loading) return <p className="text-center text-gray-500">Loading...</p>;
+  if (loading)
+    return <p className="text-center text-gray-500 pt-20">Loading...</p>;
   if (error)
-    return <p className="text-center text-red-500">Error: {error.message}</p>;
+    return (
+      <p className="text-center text-red-500  pt-20">
+        Error loading launches list
+      </p>
+    );
 
   return (
     <ul className="space-y-4 overflow-y-auto max-h-dvh p-4">

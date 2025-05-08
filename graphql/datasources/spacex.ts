@@ -1,27 +1,62 @@
 import axios from "axios";
 import { RAW_GET_LAUNCHES_QUERY } from "./queries";
 import { Launch } from "@/generated/graphql/types";
+import { isValidAxiosReponse } from "@/lib/utils/validateReponse";
+import { SpaceXApiError } from "@/lib/errors/SpaxeXApiError";
 
 // Maybe switch to grabbing the json from their official REST endpoint later https://github.com/r-spacex/SpaceX-API
 // TODO: Store locally and update occasionally
 
+export type LaunchesResponse = {
+  launches: Launch[];
+};
+
 export class SpaceXAPI {
   private readonly BASE_URL = "https://spacex-production.up.railway.app/";
 
-  async fetchGraphQL(query: string): Promise<Launch[]> {
-    const response = await axios.post(this.BASE_URL, {
-      query,
-    });
+  async fetchGraphQL<T>(query: string): Promise<T> {
+    try {
+      const response = await axios.post(this.BASE_URL, {
+        query,
+      });
+      if (!isValidAxiosReponse(response)) {
+        throw new SpaceXApiError(
+          `Invalid response from SpaceX API. Status: ${
+            response.statusText
+          }. Data: ${JSON.stringify(response.data)}`,
+          response.data
+        );
+      }
 
-    return response.data.data.launches;
+      return response.data.data;
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        throw new SpaceXApiError(
+          `Error fetching data from SpaceX API. Message: ${error.message}`,
+          error
+        );
+      }
+      if (error instanceof SpaceXApiError) {
+        throw error;
+      }
+      throw new SpaceXApiError(
+        `Unknown error fetching data from SpaceX API. Message: ${error}`,
+        error
+      );
+    }
   }
 
   async getLaunches() {
-    try {
-      return await this.fetchGraphQL(RAW_GET_LAUNCHES_QUERY);
-    } catch (error) {
-      console.error("Error fetching launches:", error);
-      throw new Error("Failed to fetch launches");
+    const data = await this.fetchGraphQL<LaunchesResponse>(
+      RAW_GET_LAUNCHES_QUERY
+    );
+
+    if (!Array.isArray(data.launches)) {
+      throw new SpaceXApiError(
+        `Invalid data format from SpaceX API. Expected launches to be an array.`,
+        data
+      );
     }
+    return data.launches;
   }
 }
