@@ -5,11 +5,24 @@ import path from "path";
 import fs from "fs";
 import gql from "graphql-tag";
 import resolvers from "@/graphql/resolvers";
+import { SpaceXAPI } from "@/graphql/datasources/spacex";
 
 const schemaPath = path.join(process.cwd(), "graphql", "schema.gql");
 
 const typeDefs = gql(fs.readFileSync(schemaPath, "utf-8"));
 
-const server = new ApolloServer({ typeDefs, resolvers });
+const server = new ApolloServer({
+  typeDefs,
+  resolvers,
+});
 
-export default startServerAndCreateNextHandler<NextRequest>(server);
+export default startServerAndCreateNextHandler<NextRequest>(server, {
+  context: async (req) => {
+    return {
+      req,
+      dataSources: {
+        spacex: new SpaceXAPI(),
+      },
+    };
+  },
+});
