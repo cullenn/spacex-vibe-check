@@ -1,4 +1,4 @@
-export class SpaceXApiError extends Error {
+export class SpaceXAPIError extends Error {
   constructor(message: string, public responseData?: unknown) {
     super(message);
     this.name = "SpaceXApiErrors";

@@ -5,7 +5,7 @@ import path from "path";
 import fs from "fs";
 import gql from "graphql-tag";
 import resolvers from "@/graphql/resolvers";
-import { SpaceXAPI } from "@/graphql/datasources/spacex";
+import { SpaceXAPI } from "@/graphql/datasources/SpaceXAPI";
 import { GraphQLContext } from "@/graphql/types/context";
 
 const schemaPath = path.join(process.cwd(), "graphql", "schema.gql");

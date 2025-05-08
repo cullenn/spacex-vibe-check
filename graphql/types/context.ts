@@ -1,4 +1,4 @@
-import { SpaceXAPI } from "@/graphql/datasources/spacex";
+import { SpaceXAPI } from "@/graphql/datasources/SpaceXAPI";
 import { NextRequest } from "next/server";
 
 export type GraphQLContext = {

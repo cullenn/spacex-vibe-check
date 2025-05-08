@@ -2,7 +2,7 @@ import axios from "axios";
 import { RAW_GET_LAUNCHES_QUERY } from "./queries";
 import { Launch } from "@/generated/graphql/types";
 import { isValidAxiosReponse } from "@/lib/utils/validateReponse";
-import { SpaceXApiError } from "@/lib/errors/SpaxeXApiError";
+import { SpaceXAPIError } from "@/lib/errors/SpaceXAPIError";
 
 // Maybe switch to grabbing the json from their official REST endpoint later https://github.com/r-spacex/SpaceX-API
 // TODO: Store locally and update occasionally
@@ -20,7 +20,7 @@ export class SpaceXAPI {
         query,
       });
       if (!isValidAxiosReponse(response)) {
-        throw new SpaceXApiError(
+        throw new SpaceXAPIError(
           `Invalid response from SpaceX API. Status: ${
             response.statusText
           }. Data: ${JSON.stringify(response.data)}`,
@@ -31,15 +31,15 @@ export class SpaceXAPI {
       return response.data.data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        throw new SpaceXApiError(
+        throw new SpaceXAPIError(
           `Error fetching data from SpaceX API. Message: ${error.message}`,
           error
         );
       }
-      if (error instanceof SpaceXApiError) {
+      if (error instanceof SpaceXAPIError) {
         throw error;
       }
-      throw new SpaceXApiError(
+      throw new SpaceXAPIError(
         `Unknown error fetching data from SpaceX API. Message: ${error}`,
         error
       );
@@ -52,7 +52,7 @@ export class SpaceXAPI {
     );
 
     if (!Array.isArray(data.launches)) {
-      throw new SpaceXApiError(
+      throw new SpaceXAPIError(
         `Invalid data format from SpaceX API. Expected launches to be an array.`,
         data
       );
