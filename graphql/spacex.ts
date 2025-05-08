@@ -5,6 +5,10 @@ export const GET_LAUNCHES_QUERY = gql`
     launches {
       launch_date_utc
       mission_name
+      track {
+        title
+        artist
+      }
     }
   }
 `;

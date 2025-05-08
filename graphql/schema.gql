@@ -2,6 +2,7 @@ type Launch {
   mission_name: String
   launch_date_utc: String
   rocket: Rocket
+  track: Track
 }
 
 type Rocket {
@@ -12,4 +13,9 @@ type Rocket {
 type Query {
   hello: String
   launches: [Launch]
+}
+
+type Track {
+  title: String
+  artist: String
 }

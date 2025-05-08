@@ -22,6 +22,7 @@ export type Launch = {
   launch_date_utc?: Maybe<Scalars['String']['output']>;
   mission_name?: Maybe<Scalars['String']['output']>;
   rocket?: Maybe<Rocket>;
+  track?: Maybe<Track>;
 };
 
 export type Query = {
@@ -36,10 +37,16 @@ export type Rocket = {
   rocket_type?: Maybe<Scalars['String']['output']>;
 };
 
+export type Track = {
+  __typename?: 'Track';
+  artist?: Maybe<Scalars['String']['output']>;
+  title?: Maybe<Scalars['String']['output']>;
+};
+
 export type GetLaunchesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLaunchesQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', launch_date_utc?: string | null, mission_name?: string | null } | null> | null };
+export type GetLaunchesQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', launch_date_utc?: string | null, mission_name?: string | null, track?: { __typename?: 'Track', title?: string | null, artist?: string | null } | null } | null> | null };
 
 export type GetLaunchTimesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -57,6 +64,10 @@ export const GetLaunchesDocument = gql`
   launches {
     launch_date_utc
     mission_name
+    track {
+      title
+      artist
+    }
   }
 }
     `;

@@ -7,6 +7,7 @@ import gql from "graphql-tag";
 import resolvers from "@/graphql/resolvers";
 import { SpaceXAPI } from "@/graphql/datasources/SpaceXAPI";
 import { GraphQLContext } from "@/graphql/types/context";
+import { BillboardAPI } from "@/graphql/datasources/BillboardAPI";
 
 const schemaPath = path.join(process.cwd(), "graphql", "schema.gql");
 
@@ -25,6 +26,7 @@ export default startServerAndCreateNextHandler<NextRequest, GraphQLContext>(
         req,
         dataSources: {
           spacex: new SpaceXAPI(),
+          billboard: new BillboardAPI(),
         },
       };
     },
