@@ -22,7 +22,7 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: ReactNode;
-}>) {
+}>): React.JSX.Element {
   return (
     <html lang="en">
       <body

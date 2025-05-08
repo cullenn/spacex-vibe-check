@@ -17,7 +17,7 @@ type ChartData = {
   launches: number;
 };
 
-export default function LaunchChart() {
+export default function LaunchChart(): React.JSX.Element {
   const { loading, error, data } = useGetLaunchTimesQuery();
   const launches = (data?.launches ?? []) as Launch[];
   if (loading) return <p className="text-center text-gray-500">Loading...</p>;
