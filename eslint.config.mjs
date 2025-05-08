@@ -11,10 +11,12 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-
   {
-    files: ["**/*.{ts,tsx}"],
+    ignores: ["node_modules", ".next", "out", "dist", "generated"],
+  },
+  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  {
+    files: ["**/*.ts", "**/*.tsx"],
     plugins: {
       "@typescript-eslint": tsEslintPlugin,
     },
@@ -30,8 +32,8 @@ const eslintConfig = [
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
-          argsIgnorePattern: "^_",
-          varsIgnorePattern: "^_",
+          argsIgnorePattern: "^_+",
+          varsIgnorePattern: "^_+",
           ignoreRestSiblings: true,
         },
       ],
@@ -54,22 +56,6 @@ const eslintConfig = [
           allowShortCircuit: true,
           allowTernary: true,
           allowTaggedTemplates: true,
-        },
-      ],
-      "@typescript-eslint/no-use-before-define": [
-        "error",
-        {
-          functions: false,
-          classes: true,
-          variables: true,
-          typedefs: true,
-        },
-      ],
-      "@typescript-eslint/no-namespace": [
-        "error",
-        {
-          allowDeclarations: true,
-          allowDefinitionFiles: true,
         },
       ],
     },

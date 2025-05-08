@@ -46,7 +46,7 @@ export class SpaceXAPI {
     }
   }
 
-  async getLaunches() {
+  async getLaunches(): Promise<Launch[]> {
     const data = await this.fetchGraphQL<LaunchesResponse>(
       RAW_GET_LAUNCHES_QUERY
     );
