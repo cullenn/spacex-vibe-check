@@ -14,10 +14,7 @@ export default function Launches(): React.JSX.Element {
   const launches = data.launches.toReversed();
 
   return (
-    <ul
-      className="space-y-4 overflow-y-auto max-h-dvh p-4"
-      aria-label="List of spaceX launches"
-    >
+    <ul className="space-y-4 overflow-y-auto max-h-dvh p-4">
       {launches
         .filter((launch): launch is Launch => launch !== null)
         .map((launch: Launch, i: number) => (

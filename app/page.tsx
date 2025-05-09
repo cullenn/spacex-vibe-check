@@ -6,17 +6,26 @@ export default function Home(): React.JSX.Element {
   return (
     <main className="h-full">
       <ApolloWrapper>
-        <div className="flex flex-col md:flex-row">
-          <div className="md:w-7/10 w-full mb-8 md:mb-0 p-4">
-            <h1 className="text-2xl font-bold mb-4">SpaceX Launches</h1>
-            <div className="my-8 p-4">
-              <LaunchChart />
-            </div>
-          </div>
+        <div className="flex flex-col lg:flex-row">
+          <section
+            className="lg:w-2/3 w-full mb-8 lg:mb-0 p-4"
+            aria-labelledby="launches-heading"
+          >
+            <h1 id="launches-heading" className="text-2xl font-bold mb-4">
+              SpaceX Launches
+            </h1>
+            <LaunchChart />
+          </section>
 
-          <div className="md:w-3/10 w-full">
+          <section
+            className="lg:w-1/3 w-full"
+            aria-labelledby="launch-list-heading"
+          >
+            <h2 id="launch-list-heading" className="sr-only">
+              Launch List
+            </h2>
             <LaunchList />
-          </div>
+          </section>
         </div>
       </ApolloWrapper>
     </main>
