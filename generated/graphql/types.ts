@@ -21,8 +21,16 @@ export type Launch = {
   __typename?: 'Launch';
   launch_date_utc: Scalars['String']['output'];
   mission_name: Scalars['String']['output'];
+  moon_phase?: Maybe<MoonPhase>;
   rocket?: Maybe<Rocket>;
   track?: Maybe<Track>;
+};
+
+export type MoonPhase = {
+  __typename?: 'MoonPhase';
+  emoji: Scalars['String']['output'];
+  illumination: Scalars['Float']['output'];
+  phase: Scalars['String']['output'];
 };
 
 export type Query = {
@@ -47,7 +55,7 @@ export type Track = {
 export type GetLaunchesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLaunchesQuery = { __typename?: 'Query', launches: Array<{ __typename?: 'Launch', launch_date_utc: string, mission_name: string, track?: { __typename?: 'Track', title?: string | null, artist?: string | null } | null }> };
+export type GetLaunchesQuery = { __typename?: 'Query', launches: Array<{ __typename?: 'Launch', launch_date_utc: string, mission_name: string, track?: { __typename?: 'Track', title?: string | null, artist?: string | null } | null, moon_phase?: { __typename?: 'MoonPhase', phase: string, illumination: number, emoji: string } | null }> };
 
 export type GetLaunchTimesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -68,6 +76,11 @@ export const GetLaunchesDocument = gql`
     track {
       title
       artist
+    }
+    moon_phase {
+      phase
+      illumination
+      emoji
     }
   }
 }

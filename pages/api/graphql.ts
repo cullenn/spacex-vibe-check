@@ -8,6 +8,7 @@ import resolvers from "@/graphql/resolvers";
 import { SpaceXAPI } from "@/graphql/datasources/SpaceXAPI";
 import { GraphQLContext } from "@/graphql/types/context";
 import { BillboardAPI } from "@/graphql/datasources/BillboardAPI";
+import { MoonPhaseAPI } from "@/graphql/datasources/MoonPhaseAPI";
 
 const schemaPath = path.join(process.cwd(), "graphql", "schema.gql");
 
@@ -27,6 +28,7 @@ export default startServerAndCreateNextHandler<NextRequest, GraphQLContext>(
         dataSources: {
           spacex: new SpaceXAPI(),
           billboard: new BillboardAPI(),
+          moonphase: new MoonPhaseAPI(),
         },
       };
     },

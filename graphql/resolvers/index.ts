@@ -11,7 +11,20 @@ async function getLaunches(
   const { dataSources } = context;
   const launches = await dataSources.spacex.getLaunches();
 
-  return launches;
+  const launchesWithMoonPhase = await Promise.all(
+    launches.map(async (launch: Launch) => {
+      const launchDate = new Date(launch.launch_date_utc)
+        .toISOString()
+        .split("T")[0];
+      const moonPhase = await dataSources.moonphase.getMoonPhase(launchDate);
+      return {
+        ...launch,
+        moon_phase: moonPhase,
+      };
+    })
+  );
+
+  return launchesWithMoonPhase;
 }
 
 async function getLaunchTimes(

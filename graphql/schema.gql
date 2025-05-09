@@ -3,6 +3,7 @@ type Launch {
   launch_date_utc: String!
   rocket: Rocket
   track: Track
+  moon_phase: MoonPhase
 }
 
 type Rocket {
@@ -19,4 +20,10 @@ type Query {
 type Track {
   title: String
   artist: String
+}
+
+type MoonPhase {
+  phase: String!
+  illumination: Float!
+  emoji: String!
 }

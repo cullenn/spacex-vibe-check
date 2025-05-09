@@ -23,10 +23,34 @@ export default function Launches(): React.JSX.Element {
         .map((launch: Launch, i: number) => (
           <li
             key={i}
-            className="p-4 border rounded-lg shadow-md hover:bg-gray-900 transition-colors"
+            className="p-4 border rounded-lg shadow-md hover:bg-gray-900 transition-colors relative overflow-hidden"
           >
-            <h3 className="text-xl font-semibold">{launch.mission_name}</h3>
-            <p className="text-gray-400">
+            {launch.moon_phase && (
+              <div
+                className="absolute inset-0 bg-gradient-to-l from-white to-transparent bg-no-repeat bg-right"
+                style={{
+                  backgroundSize: `${
+                    launch.moon_phase.illumination * 0.5 + 50
+                  }% 100%`,
+                }}
+              >
+                <div className="absolute right-0 top-1/2 -translate-y-1/2  z-10">
+                  <p
+                    className="text-7xl cursor-help"
+                    title={launch.moon_phase.phase}
+                  >
+                    {launch.moon_phase.emoji}
+                  </p>
+                </div>
+              </div>
+            )}
+            <h3
+              className="text-xl font-semibold relative z-10 max-w"
+              style={{ maxWidth: "calc(100% - 4.5rem)" }}
+            >
+              {launch.mission_name}
+            </h3>
+            <p className="text-gray-400 relative z-10">
               {new Date(launch.launch_date_utc).toLocaleDateString(undefined, {
                 year: "numeric",
                 month: "long",

@@ -9,6 +9,11 @@ export const GET_LAUNCHES_QUERY = gql`
         title
         artist
       }
+      moon_phase {
+        phase
+        illumination
+        emoji
+      }
     }
   }
 `;
