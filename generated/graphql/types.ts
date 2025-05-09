@@ -19,8 +19,8 @@ export type Scalars = {
 
 export type Launch = {
   __typename?: 'Launch';
-  launch_date_utc?: Maybe<Scalars['String']['output']>;
-  mission_name?: Maybe<Scalars['String']['output']>;
+  launch_date_utc: Scalars['String']['output'];
+  mission_name: Scalars['String']['output'];
   rocket?: Maybe<Rocket>;
   track?: Maybe<Track>;
 };
@@ -28,7 +28,7 @@ export type Launch = {
 export type Query = {
   __typename?: 'Query';
   hello?: Maybe<Scalars['String']['output']>;
-  launches?: Maybe<Array<Maybe<Launch>>>;
+  launches: Array<Launch>;
 };
 
 export type Rocket = {
@@ -46,17 +46,17 @@ export type Track = {
 export type GetLaunchesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLaunchesQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', launch_date_utc?: string | null, mission_name?: string | null, track?: { __typename?: 'Track', title?: string | null, artist?: string | null } | null } | null> | null };
+export type GetLaunchesQuery = { __typename?: 'Query', launches: Array<{ __typename?: 'Launch', launch_date_utc: string, mission_name: string, track?: { __typename?: 'Track', title?: string | null, artist?: string | null } | null }> };
 
 export type GetLaunchTimesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLaunchTimesQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', launch_date_utc?: string | null } | null> | null };
+export type GetLaunchTimesQuery = { __typename?: 'Query', launches: Array<{ __typename?: 'Launch', launch_date_utc: string }> };
 
 export type GetLaunchesWithRocketsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLaunchesWithRocketsQuery = { __typename?: 'Query', launches?: Array<{ __typename?: 'Launch', launch_date_utc?: string | null, mission_name?: string | null, rocket?: { __typename?: 'Rocket', rocket_name?: string | null, rocket_type?: string | null } | null } | null> | null };
+export type GetLaunchesWithRocketsQuery = { __typename?: 'Query', launches: Array<{ __typename?: 'Launch', launch_date_utc: string, mission_name: string, rocket?: { __typename?: 'Rocket', rocket_name?: string | null, rocket_type?: string | null } | null }> };
 
 
 export const GetLaunchesDocument = gql`

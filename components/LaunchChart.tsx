@@ -19,16 +19,17 @@ type ChartData = {
 
 export default function LaunchChart(): React.JSX.Element {
   const { loading, error, data } = useGetLaunchTimesQuery();
-  const launches = (data?.launches ?? []) as Launch[];
+
   if (loading) return <p className="text-center text-gray-500">Loading...</p>;
-  if (error)
+  if (error || !data)
     return (
       <p className="text-center text-red-500">Error loading launches chart</p>
     );
 
+  const launches = data.launches;
   const chartDataMap = new Map<number, number>();
 
-  launches.forEach((launch: Launch | null) => {
+  launches.forEach((launch: Partial<Launch>) => {
     if (launch?.launch_date_utc) {
       const year = new Date(launch.launch_date_utc).getFullYear();
       chartDataMap.set(year, (chartDataMap.get(year) || 0) + 1);
