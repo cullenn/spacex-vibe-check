@@ -17,7 +17,7 @@ export default function Launches(): React.JSX.Element {
     <ul className="space-y-4 overflow-y-auto max-h-dvh p-4">
       {launches
         .filter((launch): launch is Launch => launch !== null)
-        .map((launch: Launch, i: number) => (
+        .map((launch: Launch) => (
           <li
             key={`launch-${launch.mission_name}-${launch.launch_date_utc}`}
             className="p-4 border rounded-lg shadow-md hover:bg-gray-900 transition-colors relative overflow-hidden"
