@@ -13,6 +13,7 @@ type Rocket {
 type Query {
   hello: String
   launches: [Launch!]!
+  launchTimes: [String!]!
 }
 
 type Track {

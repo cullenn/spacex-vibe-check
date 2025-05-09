@@ -26,14 +26,12 @@ export default function LaunchChart(): React.JSX.Element {
       <p className="text-center text-red-500">Error loading launches chart</p>
     );
 
-  const launches = data.launches;
+  const launchTimes = data.launchTimes;
   const chartDataMap = new Map<number, number>();
 
-  launches.forEach((launch: Partial<Launch>) => {
-    if (launch?.launch_date_utc) {
-      const year = new Date(launch.launch_date_utc).getFullYear();
-      chartDataMap.set(year, (chartDataMap.get(year) || 0) + 1);
-    }
+  launchTimes.forEach((launchTime) => {
+    const year = new Date(launchTime).getFullYear();
+    chartDataMap.set(year, (chartDataMap.get(year) || 0) + 1);
   });
 
   const chartData: ChartData[] = Array.from(chartDataMap.entries()).map(

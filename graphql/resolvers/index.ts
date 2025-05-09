@@ -14,10 +14,30 @@ async function getLaunches(
   return launches;
 }
 
+async function getLaunchTimes(
+  _parent: unknown,
+  _args: unknown,
+  context: GraphQLContext,
+  _info: GraphQLResolveInfo
+) {
+  const { dataSources } = context;
+  const launches = await dataSources.spacex.getLaunches();
+
+  return launches
+    .map((launch: Launch) => {
+      if (launch?.launch_date_utc) {
+        return launch.launch_date_utc;
+      }
+      return null;
+    })
+    .filter((launch) => launch !== null);
+}
+
 const resolvers = {
   Query: {
     hello: () => "yep that works",
     launches: getLaunches,
+    launchTimes: getLaunchTimes,
   },
 };
 

@@ -15,9 +15,7 @@ export const GET_LAUNCHES_QUERY = gql`
 
 export const GET_LAUNCH_TIMES_QUERY = gql`
   query GetLaunchTimes {
-    launches {
-      launch_date_utc
-    }
+    launchTimes
   }
 `;
 

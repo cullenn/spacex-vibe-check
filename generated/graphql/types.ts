@@ -28,6 +28,7 @@ export type Launch = {
 export type Query = {
   __typename?: 'Query';
   hello?: Maybe<Scalars['String']['output']>;
+  launchTimes: Array<Scalars['String']['output']>;
   launches: Array<Launch>;
 };
 
@@ -51,7 +52,7 @@ export type GetLaunchesQuery = { __typename?: 'Query', launches: Array<{ __typen
 export type GetLaunchTimesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetLaunchTimesQuery = { __typename?: 'Query', launches: Array<{ __typename?: 'Launch', launch_date_utc: string }> };
+export type GetLaunchTimesQuery = { __typename?: 'Query', launchTimes: Array<string> };
 
 export type GetLaunchesWithRocketsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -105,9 +106,7 @@ export type GetLaunchesSuspenseQueryHookResult = ReturnType<typeof useGetLaunche
 export type GetLaunchesQueryResult = Apollo.QueryResult<GetLaunchesQuery, GetLaunchesQueryVariables>;
 export const GetLaunchTimesDocument = gql`
     query GetLaunchTimes {
-  launches {
-    launch_date_utc
-  }
+  launchTimes
 }
     `;
 
