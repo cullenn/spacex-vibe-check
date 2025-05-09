@@ -1,6 +1,6 @@
 "use client";
 
-import { Launch, useGetLaunchTimesQuery } from "@/generated/graphql/types";
+import { useGetLaunchTimesQuery } from "@/generated/graphql/types";
 import {
   Bar,
   BarChart,

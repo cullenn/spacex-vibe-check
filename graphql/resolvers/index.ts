@@ -19,7 +19,7 @@ async function getLaunchTimes(
   _args: unknown,
   context: GraphQLContext,
   _info: GraphQLResolveInfo
-) {
+): Promise<string[]> {
   const { dataSources } = context;
   const launches = await dataSources.spacex.getLaunches();
 
