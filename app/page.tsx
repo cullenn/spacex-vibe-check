@@ -4,7 +4,7 @@ import LaunchList from "@/components/LaunchList";
 
 export default function Home(): React.JSX.Element {
   return (
-    <main>
+    <main className="h-full">
       <ApolloWrapper>
         <div className="flex flex-col md:flex-row">
           <div className="md:w-7/10 w-full mb-8 md:mb-0 p-4">
