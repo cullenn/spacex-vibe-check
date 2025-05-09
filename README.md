@@ -61,6 +61,10 @@ A growing list of potential data points to fuel future vibes:
 - **API Call Optimization:**  
   To reduce redundant requests (especially when fetching historical data that rarely changes ) the aim is to implement a caching layer using **Redis** (or a similar lightweight solution). This will help cut down on external API hits and keep things quick.
 
+- **Auth Provider:**  
+  Planning to integrate a simple SSO-based auth system (likely starting with Google Auth) to limit access to certain features like an admin dashboard. The idea is to keep the vibe-checking public but have a secure way to manage privileged operations (e.g., writing to the API or accessing WIP reports). Initial implementation will likely use a basic allowlist of authorized emails, with the GraphQL server enforcing access checks based on the authenticated user's identity, which is extracted into the context dynamically for each request.
+
+
 ---
 
 **Disclaimer:** This project is strictly for fun. There’s no scientific basis behind the vibe scores, and none of the external data has any real bearing on actual launch outcomes.
