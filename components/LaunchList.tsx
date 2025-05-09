@@ -23,10 +23,16 @@ export default function Launches(): React.JSX.Element {
         .map((launch: Launch, i: number) => (
           <li
             key={i}
-            className="p-4 border rounded-lg shadow-md hover:bg-gray-900 trasition-colors"
+            className="p-4 border rounded-lg shadow-md hover:bg-gray-900 transition-colors"
           >
             <h3 className="text-xl font-semibold">{launch.mission_name}</h3>
-            <p className="text-gray-400">{launch.launch_date_utc}</p>
+            <p className="text-gray-400">
+              {new Date(launch.launch_date_utc).toLocaleDateString(undefined, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
           </li>
         ))}
     </ul>
